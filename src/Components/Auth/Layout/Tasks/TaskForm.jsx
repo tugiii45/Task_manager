@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import TaskItem from "./TaskItem";
-function TaskForm() {
+
+
+function TaskForm({onAddTask}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Pending");

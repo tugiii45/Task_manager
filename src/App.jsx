@@ -1,3 +1,4 @@
+import Dashboard from "./Pages/Dashboard"
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -26,7 +27,11 @@ function App() {
     },
   ])
 
-  return <RouterProvider router={router} />
+  return (
+    <>
+     <Dashboard/>
+    </>
+  )
 }
 
 export default App
