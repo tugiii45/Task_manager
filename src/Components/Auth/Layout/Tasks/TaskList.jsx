@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import TaskItem from "./TaskItem";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
@@ -6,6 +7,8 @@ function TaskList() {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTasks);
   }, []);
+
+  
  function handleDelete(id) {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
@@ -18,7 +21,7 @@ function TaskList() {
     setTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
-
+return(
   <>
    <div>
       <h2>Task List</h2>
@@ -34,7 +37,7 @@ function TaskList() {
           />
         ))
       )}
-    </div></>;
+    </div></>);
 }
 
 export default TaskList;
