@@ -1,43 +1,47 @@
 import React, { useEffect, useState } from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList() {
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(storedTasks);
-  }, []);
+function TaskList({ tasks }) {
+  const [localTasks, setLocalTasks] = useState(tasks || []);
 
-  
- function handleDelete(id) {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
+  useEffect(() => {
+    setLocalTasks(tasks || []);
+  }, [tasks]);
+
+  function handleDelete(id) {
+    const updatedTasks = localTasks.filter((task) => task.id !== id);
+    setLocalTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
- function handleEdit(id, updatedTask) {
-    const updatedTasks = tasks.map((task) =>
+
+  function handleEdit(id, updatedTask) {
+    const updatedTasks = localTasks.map((task) =>
       task.id === id ? { ...task, ...updatedTask } : task
     );
-    setTasks(updatedTasks);
+    setLocalTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
-return(
-  <>
-   <div>
-      <h2>Task List</h2>
-      {tasks.length === 0 ? (
-        <p>No tasks yet</p>
-      ) : (
-        tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-          />
-        ))
-      )}
-    </div></>);
+
+  return (
+    <>
+      <div>
+        <h2>Task List</h2>
+        {localTasks.length === 0 ? (
+          <p>No tasks yet</p>
+        ) : (
+          localTasks.map((task) => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          ))
+        )}
+      </div>
+    </>
+  )
 }
+
 
 export default TaskList;
