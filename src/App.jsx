@@ -28,12 +28,10 @@ function App() {
   ])
 
   return (
-    <>
     <RouterProvider router={router} />
-     <Dashboard/>
-    </>
   )
 }
 
 export default App
+
 
