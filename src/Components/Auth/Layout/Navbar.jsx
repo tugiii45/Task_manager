@@ -1,16 +1,36 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-lg font-bold">Team Task Manager</div>
-        <ul className="flex space-x-4">
-          <li><a href="#" className="text-white hover:text-gray-200">Home</a></li>
-          <li><a href="#" className="text-white hover:text-gray-200">Tasks</a></li>
-          <li><a href="#" className="text-white hover:text-gray-200">Teams</a></li>
-          <li><a href="#" className="text-white hover:text-gray-200">Logout</a></li>
+    <nav className="navbar">
+      <div className="nav-container">
+        
+        {/* Logo */}
+        <div className="logo">
+          <span>✓</span> Team Task Manager
+        </div>
+
+        {/* Navigation Links */}
+        <ul className="nav-links">
+          <li>
+            <Link to="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/tasks">Tasks</Link>
+          </li>
+          <li>
+            <Link to="/teams">Teams</Link>
+          </li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
         </ul>
+
+        {/* Logout Button */}
+        <button className="logout-btn">Logout</button>
+
       </div>
     </nav>
   );
